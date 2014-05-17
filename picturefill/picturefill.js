@@ -1,7 +1,8 @@
 /*! Picturefill - Responsive Images that work today. (and mimic the proposed Picture element with span elements). Original Author: Scott Jehl, Filament Group, 2012 | License: MIT/GPLv2 
 
 //////
-Enhanced by Jason Post, 2014. 
+Enhanced by Jason Post, 2014
+///
 
 Added JavaScript to add class, ID and title to img element.
 
