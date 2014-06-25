@@ -2,7 +2,7 @@
 
 A skills test to write a single page JavaScript application that allows one to search Github.com for repos by keyword.
 
-## Test Description ## 
+## Test Description ##
 
 There is no one way to complete this exercise as long as the minimum requirements are met.
 This should take about 2 hours to complete.
