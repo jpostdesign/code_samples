@@ -5,7 +5,6 @@ A sample of programming and code I've created for various projects, and tech exc
 
 # GitHub JSON-P Query
 A skills test with the following requirements:
-_______________________
 
 **Overview**
 
@@ -20,7 +19,6 @@ There is no one way to complete this exercise as long as the minimum requirement
 4. When a result is clicked, display an alert with the repo's `language`, `followers`, `url` and `description`.
 5. The search term should be cached so duplicate searches do not trigger further requests. 
 6. Solution does not need to support older browsers.
-_______________________
 
 **Solution:**
 * Call a search after 300ms from keyup in the search box. That's the optimum time for such a delay and gives the best UX. It strikes a balance between the user feeling searches are "instant" and from not flooding the server with requests.
