@@ -31,3 +31,21 @@ Add specific classes based on child spans with "class"
 Add titles with "data-title" and ID with with "data-id" 
 
 You can combine top parent class names with specific names too. The script adds them with a space in the middle. From the preceding example, the complete class added to the first image span would be class="parentClassApplied specificClassOne"
+
+# simulatedChat
+A proof of concept, jQuery and Bootstrap based simluated chat for a tech exercise for Monitise. Colors and graphics soley for demo. Branding to be done at a later time.
+
+**Goals: **
+* Improve UX
+* Give customer feedback that agent is replying
+* Smooth interaction/animation
+* Responsive design to adapt to multiple screen sizes
+
+**Accomplishments **
+* Completed over one weekend
+* Hand-coded jQuery
+* SVG "profile photo" graphics exported from Illustrator
+* Automatic scroll and animated fade-in of new messages
+* Sample robot script written in array
+* Randomized auto-reply to help simulate proof of concept
+* Prevents empty input, or "blank" messages
