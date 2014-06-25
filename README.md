@@ -35,13 +35,13 @@ You can combine top parent class names with specific names too. The script adds 
 # simulatedChat
 A proof of concept, jQuery and Bootstrap based simluated chat for a tech exercise for Monitise. Colors and graphics soley for demo. Branding to be done at a later time.
 
-**Goals: **
+**Goals:**
 * Improve UX
 * Give customer feedback that agent is replying
 * Smooth interaction/animation
 * Responsive design to adapt to multiple screen sizes
 
-**Accomplishments **
+**Accomplishments**
 * Completed over one weekend
 * Hand-coded jQuery
 * SVG "profile photo" graphics exported from Illustrator
