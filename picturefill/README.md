@@ -1,3 +1,9 @@
+#Improvements: 
+
+Added JavaScript to add class, ID and title to img element. 
+
+Forked original library by Scott Jehl and opened pull request for improvement. Pull request details at https://github.com/scottjehl/picturefill/pull/115 
+
 #Problem:
 
 Picurefill ver2 could not apply classes, ID, or titles to child img elements. This caused issues with combining Picturefill and the Bootstrap framework due to dependencies on img element level classes like "img-responsive" and "img-circle".
