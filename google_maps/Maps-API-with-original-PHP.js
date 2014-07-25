@@ -160,19 +160,19 @@
 
 if (($listtype == "ALL") OR ($listtype == "DY7"))
 	{
-		$mapquery="SELECT $mySQLmapquery WHERE $mySQLmapqueryWhereBeforeAnd AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
+		$mapquery="SELECT $mySQLmapquerySelect WHERE $mySQLmapqueryWhereBeforeAnd AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
 	}
 	elseif ($listtype == "CTY")
 	{
-		$mapquery="SELECT $mySQLmapquery WHERE $mySQLmapqueryWhereBeforeAnd AND market_county = '$cnty' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
+		$mapquery="SELECT $mySQLmapquerySelect WHERE $mySQLmapqueryWhereBeforeAnd AND market_county = '$cnty' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
 	}
 	elseif ($listtype == "DAY")
 	{
-		$mapquery="SELECT $mySQLmapquery WHERE $mySQLmapqueryWhereBeforeAnd AND market_day.marketday_day = '$day' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
+		$mapquery="SELECT $mySQLmapquerySelect WHERE $mySQLmapqueryWhereBeforeAnd AND market_day.marketday_day = '$day' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
 	}
 	else
 	{
-		$mapquery="SELECT $mySQLmapquery WHERE $mySQLmapqueryWhereBeforeAnd AND market_county = '$cnty' AND market_day = '$day' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
+		$mapquery="SELECT $mySQLmapquerySelect WHERE $mySQLmapqueryWhereBeforeAnd AND market_county = '$cnty' AND market_day = '$day' AND market.market_inactive<>'Y' ORDER BY market_day.marketday_start DESC";
 	}
 	
 	$mapresult=mysql_query($mapquery);
