@@ -11,12 +11,12 @@ A proof of concept, jQuery and Bootstrap based simluated chat for a tech exercis
 * Responsive design to adapt to multiple screen sizes
 
 **Accomplishments**
-* Completed over one weekend
+* Completed over one weekend, including research on Monitise to make it applicable and include a few tidbits of the company
 * Hand-coded jQuery
 * SVG "profile photo" graphics exported from Illustrator
 * Automatic scroll and animated fade-in of new messages
 * Sample robot script written in array
-* Randomized auto-reply to help simulate proof of concept
+* Randomized auto-reply wait time to help simulate proof of concept
 * Prevents empty input, or "blank" messages
 
 # Process: 
