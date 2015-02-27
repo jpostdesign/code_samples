@@ -1,43 +1,40 @@
 //Google Maps APIv3, JavaScript and PHP by Jason Post, jpost-design.com
 // See working example at http://jpost-design.com/#interactive-map
-	 var openIcon = {
-          url: 'images/gmap_open_icon.png',
-          size: new google.maps.Size(24, 24),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(5, 24)
-        };
-		
-		var seasonalIcon = {
-          url: 'images/gmap_open_icon.png',
-          size: new google.maps.Size(24, 24),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(-8, 36)
-        };
-		
-		var closedIcon = {
-          url: 'images/gmap_closed_icon.png',
-          size: new google.maps.Size(24, 24),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(21, 24)
-        };
+
+var openMapIcon = {
+    url: 'img/web_design/map-open-icon.png',
+    size: new google.maps.Size(24, 24),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(5, 24)
+  };
+
+var seasonalMapIcon = Object.create(openMapIcon);
+  seasonalMapIcon.url = 'img/web_design/map-open-icon.png';
+  seasonalMapIcon.anchor = new google.maps.Point(-8, 36);
+      
+var closedMapIcon = Object.create(openMapIcon);
+  closedMapIcon.url = 'img/web_design/map-closed-icon.png';
+  closedMapIcon.anchor = new google.maps.Point(21, 24);
 
  var center = null;
  var map = null;
  var currentPopup;
  var bounds = new google.maps.LatLngBounds();
  
- function addMarkerOpen(lat, lng, html) {
+ //added iconType to make more DRY
+ function addMarker(iconType, lat, lng, html) {
+   var iconType = iconType;
 	 var pt = new google.maps.LatLng(lat, lng);
 	 bounds.extend(pt);
 	var marker = new google.maps.Marker({
 			 position: pt,
-			 icon: openIcon,
+			 icon: iconType,
 			 map: map
 		 });
 		 
 	var popup = new google.maps.InfoWindow({
 		 content: html,
-		 maxWidth: 150
+		 maxWidth: 250
 	 });
 	
 	google.maps.event.addListener(marker, "click", function() {
@@ -52,59 +49,9 @@
 	 currentPopup = null;
 	 });
  }
- 
- function addMarkerSeasonal(lat, lng, html) {
-	 var pt = new google.maps.LatLng(lat, lng);
-	 bounds.extend(pt);
-	var marker = new google.maps.Marker({
-			 position: pt,
-			 icon: seasonalIcon,
-			 map: map
-		 });
-	var popup = new google.maps.InfoWindow({
-		 content: html,
-		 maxWidth: 150
-	 });
-	google.maps.event.addListener(marker, "click", function() {
-		 if (currentPopup != null) {
-			 currentPopup.close();
-			 currentPopup = null;
-		 }
-		 popup.open(map, marker);
-		 currentPopup = popup;
-	});
-	 google.maps.event.addListener(popup, "closeclick", function() {
-	 currentPopup = null;
-	 });
- }
-
- function addMarkerClosed(lat, lng, html) {
-	 var pt = new google.maps.LatLng(lat, lng);
-	 bounds.extend(pt);
-	var marker = new google.maps.Marker({
-			 position: pt,
-			 icon: closedIcon,
-			 map: map
-		 });
-	 var popup = new google.maps.InfoWindow({
-		 content: html,
-		 maxWidth: 150
-	 });
-	google.maps.event.addListener(marker, "click", function() {
-		 if (currentPopup != null) {
-			 currentPopup.close();
-			 currentPopup = null;
-		 }
-		 popup.open(map, marker);
-		 currentPopup = popup;
-	});
-	 google.maps.event.addListener(popup, "closeclick", function() {
-	 currentPopup = null;
-	 });
- }
 
  function initialize() {
-	 map = new google.maps.Map(document.getElementById("map_canvas"), {
+	 map = new google.maps.Map(document.getElementById("google-map"), {
 		 center: new google.maps.LatLng(37.7945928242851, -121.81365966796875),
 		 zoom: 8,
 		 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -234,11 +181,11 @@ if (($listtype == "ALL") OR ($listtype == "DY7"))
 		$market_longitude=mysql_result($mapresult,$m,"marketday_longitude");
  
 			if ($marketday_start=="") {
-				echo "addMarkerOpen($market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">Year-Round</dd><dt class=\"gmapInfoWindowAPIv3\">$days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3\"><a class=\"gmapInfoWindowAPIv3\" href=\"/market_directions.php?market_id=$market_id&amp;market_day=$marketday_day\">Get directions...</a></p></div>');\n";
+				echo "addMarker(openMapIcon, $market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">Year-Round</dd><dt class=\"gmapInfoWindowAPIv3\">$days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3\"><a class=\"gmapInfoWindowAPIv3\" href=\"/market_directions.php?market_id=$market_id&amp;market_day=$marketday_day\">Get directions...</a></p></div>');\n";
 			} elseif ($seastartdate<=$comparedate AND $seaenddate>=$comparedate) {
-				echo "addMarkerSeasonal($market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">$startdate to $enddate</dd><dt class=\"gmapInfoWindowAPIv3\"> $days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3\"><a class=\"gmapInfoWindowAPIv3\" href=\"/market_directions.php?market_id=$market_id&amp;market_day=$marketday_day\">Get directions...</a></p></div>');\n";
+				echo "addMarker(seasonalMapIcon, $market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">$startdate to $enddate</dd><dt class=\"gmapInfoWindowAPIv3\"> $days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3\"><a class=\"gmapInfoWindowAPIv3\" href=\"/market_directions.php?market_id=$market_id&amp;market_day=$marketday_day\">Get directions...</a></p></div>');\n";
 			} else {
-				echo "addMarkerClosed($market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3 closedMarket\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">$startdate to $enddate</dd><dt class=\"gmapInfoWindowAPIv3\"> $days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3 closedSeason\">Closed for the season.</p></div>');\n";
+				echo "addMarker(closedMapIcon, $market_latitude, $market_longitude,'<div class=\"gmapInfoWindowAPIv3Container\"><a class=\"gmapInfoWindowAPIv3 marketNameAPIv3 closedMarket\" href=\"market_home.php?market_id=$market_id\">$market_namestrip</a>$market_facebook_link<dl class=\"gmapInfoWindowAPIv3\"><dt class=\"gmapInfoWindowAPIv3\">Season</dt><dd class=\"gmapInfoWindowAPIv3\">$startdate to $enddate</dd><dt class=\"gmapInfoWindowAPIv3\"> $days[$marketday_day]</dt><dd class=\"gmapInfoWindowAPIv3\">$start_time to $end_time</dd></dl><p class=\"gmapInfoWindowAPIv3 closedSeason\">Closed for the season.</p></div>');\n";
 			}
 	
 	++$m;
