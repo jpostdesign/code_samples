@@ -1,21 +1,24 @@
 //Google Maps APIv3, JavaScript and PHP by Jason Post, jpost-design.com
 // See working example at http://jpost-design.com/#interactive-map
 
-var openMapIcon = {
-    url: 'img/web_design/map-open-icon.png',
-    size: new google.maps.Size(24, 24),
-    origin: new google.maps.Point(0,0),
-    anchor: new google.maps.Point(5, 24)
-  };
+// make Icons with contructor
 
-var seasonalMapIcon = Object.create(openMapIcon);
-  seasonalMapIcon.url = 'img/web_design/map-open-icon.png';
-  seasonalMapIcon.anchor = new google.maps.Point(-8, 36);
-      
-var closedMapIcon = Object.create(openMapIcon);
-  closedMapIcon.url = 'img/web_design/map-closed-icon.png';
-  closedMapIcon.anchor = new google.maps.Point(21, 24);
+function Icon (url, anchor) {
+	this.url = url;
+	this.anchor = anchor
+};
 
+Icon.prototype = {
+	size: new google.maps.Size(24, 24),
+    origin: new google.maps.Point(0,0)
+}
+
+var openMapIcon = new Icon('img/web_design/map-open-icon.png', new google.maps.Point(5, 24));
+var seasonalMapIcon = new Icon('img/web_design/map-open-icon.png', new google.maps.Point(-8, 36));
+var closedMapIcon = new Icon('img/web_design/map-closed-icon.png', new google.maps.Point(21, 24));
+// end Icon creation
+
+// set initial values
  var center = null;
  var map = null;
  var currentPopup;
@@ -50,6 +53,7 @@ var closedMapIcon = Object.create(openMapIcon);
 	 });
  }
 
+// initialize map, target ID div, center, set zoom level, and map type 
  function initialize() {
 	 map = new google.maps.Map(document.getElementById("google-map"), {
 		 center: new google.maps.LatLng(37.7945928242851, -121.81365966796875),

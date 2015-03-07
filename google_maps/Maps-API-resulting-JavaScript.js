@@ -1,21 +1,26 @@
 //Google Map APIv3, JavaScript (hardcoded and output by PHP) by Jason Post, jpost-design.com
 // See working example at http://jpost-design.com/#interactive-map
+
 // JavaScript Document
-var openMapIcon = {
-    url: 'img/web_design/map-open-icon.png',
-    size: new google.maps.Size(24, 24),
-    origin: new google.maps.Point(0,0),
-    anchor: new google.maps.Point(5, 24)
-  };
 
-var seasonalMapIcon = Object.create(openMapIcon);
-  seasonalMapIcon.url = 'img/web_design/map-open-icon.png';
-  seasonalMapIcon.anchor = new google.maps.Point(-8, 36);
-      
-var closedMapIcon = Object.create(openMapIcon);
-  closedMapIcon.url = 'img/web_design/map-closed-icon.png';
-  closedMapIcon.anchor = new google.maps.Point(21, 24);
+// make Icons with contructor
 
+function Icon (url, anchor) {
+	this.url = url;
+	this.anchor = anchor
+};
+
+Icon.prototype = {
+	size: new google.maps.Size(24, 24),
+    origin: new google.maps.Point(0,0)
+}
+
+var openMapIcon = new Icon('img/web_design/map-open-icon.png', new google.maps.Point(5, 24));
+var seasonalMapIcon = new Icon('img/web_design/map-open-icon.png', new google.maps.Point(-8, 36));
+var closedMapIcon = new Icon('img/web_design/map-closed-icon.png', new google.maps.Point(21, 24));
+// end Icon creation
+
+// set initial values
  var center = null;
  var map = null;
  var currentPopup;
@@ -50,6 +55,7 @@ var closedMapIcon = Object.create(openMapIcon);
 	 });
  }
 
+// initialize map, target ID div, center, set zoom level, and map type 
  function initialize() {
 	 map = new google.maps.Map(document.getElementById("google-map"), {
 		 center: new google.maps.LatLng(37.7945928242851, -121.81365966796875),
@@ -101,7 +107,9 @@ addMarker(closedMapIcon, 37.405407, -122.140961,'<div class="gmapInfoWindowAPIv3
 addMarker(closedMapIcon, 37.768265, -122.453545,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3 closedMarket" href="#interactive-map">Upper Haight</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">April 3 to October 30</dd><dt class="gmapInfoWindowAPIv3"> Wednesday</dt><dd class="gmapInfoWindowAPIv3">3:00 PM to 7:00 PM</dd></dl><p class="gmapInfoWindowAPIv3 closedSeason">Closed for the season.</p></div>');
 addMarker(closedMapIcon, 37.733608, -122.433014,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3 closedMarket" href="#interactive-map">Glen Park Village</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">March 31 to November 24</dd><dt class="gmapInfoWindowAPIv3"> Sunday</dt><dd class="gmapInfoWindowAPIv3">10:00 AM to 2:00 PM</dd></dl><p class="gmapInfoWindowAPIv3 closedSeason">Closed for the season.</p></div>');
 addMarker(closedMapIcon, 37.932175, -121.694443,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3 closedMarket" href="#interactive-map">Brentwood</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">March 30 to November 16</dd><dt class="gmapInfoWindowAPIv3"> Saturday</dt><dd class="gmapInfoWindowAPIv3">8:00 AM to 12:00 PM</dd></dl><p class="gmapInfoWindowAPIv3 closedSeason">Closed for the season.</p></div>');
+
 addMarker(seasonalMapIcon, 37.764557, -122.433151,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3" href="#interactive-map">Castro</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">March 13 to December 18</dd><dt class="gmapInfoWindowAPIv3"> Wednesday</dt><dd class="gmapInfoWindowAPIv3">4:00 PM to 8:00 PM</dd></dl><p class="gmapInfoWindowAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map">Get directions...</a></p></div>');
+
 addMarker(openMapIcon, 37.532921, -121.960236,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3" href="#interactive-map">Irvington</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">Year-Round</dd><dt class="gmapInfoWindowAPIv3">Sunday</dt><dd class="gmapInfoWindowAPIv3">9:00 AM to 2:00 PM</dd></dl><p class="gmapInfoWindowAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map">Get directions...</a></p></div>');
 addMarker(openMapIcon, 37.313770, -121.774284,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3" href="#interactive-map">Evergreen</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">Year-Round</dd><dt class="gmapInfoWindowAPIv3">Wednesday</dt><dd class="gmapInfoWindowAPIv3">9:00 AM to 1:00 PM</dd></dl><p class="gmapInfoWindowAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map">Get directions...</a></p></div>');
 addMarker(openMapIcon, 37.794563, -122.277023,'<div class="gmapInfoWindowAPIv3Container"><a class="gmapInfoWindowAPIv3 marketNameAPIv3" href="#interactive-map">Jack London Square</a><p class="facebookLinkAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map" target="_top"><img src="images/facebook_logo_tiny.png" width="16" height="16" alt="Facebook logo" />&nbsp;Facebook Page</a></p><dl class="gmapInfoWindowAPIv3"><dt class="gmapInfoWindowAPIv3">Season</dt><dd class="gmapInfoWindowAPIv3">Year-Round</dd><dt class="gmapInfoWindowAPIv3">Sunday</dt><dd class="gmapInfoWindowAPIv3">9:00 AM to 2:00 PM</dd></dl><p class="gmapInfoWindowAPIv3"><a class="gmapInfoWindowAPIv3" href="#interactive-map">Get directions...</a></p></div>');
