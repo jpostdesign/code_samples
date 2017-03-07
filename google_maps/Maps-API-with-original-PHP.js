@@ -9,7 +9,7 @@ function Icon (url, anchor) {
 };
 
 Icon.prototype = {
-	size: new google.maps.Size(24, 24),
+    size: new google.maps.Size(24, 24),
     origin: new google.maps.Point(0,0)
 }
 
