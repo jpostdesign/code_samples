@@ -3,7 +3,7 @@
 
 // JavaScript Document
 
-// make Icons with contructor
+// make Icons with constructor
 
 function Icon (url, anchor) {
 	this.url = url;
@@ -31,7 +31,7 @@ var closedMapIcon = new Icon('img/web_design/map-closed-icon.png', new google.ma
    var iconType = iconType;
 	 var pt = new google.maps.LatLng(lat, lng);
 	 bounds.extend(pt);
-	var marker = new google.maps.Marker({
+	 var marker = new google.maps.Marker({
 			 position: pt,
 			 icon: iconType,
 			 map: map
