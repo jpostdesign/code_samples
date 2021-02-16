@@ -3,40 +3,6 @@ code_samples
 
 A sample of programming and code I've created for various projects, and tech excercises 
 
-# GitHub JSON-P Query
-A skills test with the following requirements:
-
-**Overview**
-
-Write a single page JavaScript application that allows one to search Github.com for repos by keyword.
-There is no one way to complete this exercise as long as the minimum requirements are met.
-
-**Requirements**
-
-1. You can only edit app.js, you cannot touch index.html. jQuery is provided.
-2. index.html contains two elements: one for the search term and one for the results.
-3. The results should show as a list with each item in an "owner/name" format.
-4. When a result is clicked, display an alert with the repo's `language`, `followers`, `url` and `description`.
-5. The search term should be cached so duplicate searches do not trigger further requests. 
-6. Solution does not need to support older browsers.
-
-**Solution:**
-* Call a search after 300ms from keyup in the search box. That's the optimum time for such a delay and gives the best UX. It strikes a balance between the user feeling searches are "instant" and from not flooding the server with requests.
-* Throughout the process, utilized the console to check the search term, returned array length, and cached status
-* Cached searches using Local Storage
-* Simple unordered list to display results given the requirements
-* Linked the alert boxes to the list item's index position, to make other values relative
-* Encountered one alert box while testing that overflowed my screen with a very long description. So I made a check to see if description length > 300, if so, then extract just the first 300 characters
-
-# Google Maps
-
-"Google Maps" - PHP, MySQL, JavaScript, Google Maps API v3. A project to integrate an interactive, dynamic map on a PHP/MySQL website for a farmers' market association with over 65 unique markets. Through PHP a MySQL database is queried, and echo array created in JavaScript that populates interactive markers and corresponding information including Market Name, Location, Hours, Season, Directions, and Social Media Link. 
-
-For raw code, see the files on GitHub at https://github.com/jpostdesign/code_samples/tree/master/google_maps
-
-A working, interactive example of the resulting map, is on my website. I simulated a date of March 28th to show open vs closed markets, and links have been replaced with dummy placeholders for example purposes. See it at: http://jpost-design.com/#interactive-map
-
-
 # Picturefill
 A Responsive Images approach that you can use today that mimics the [proposed picture element](http://www.w3.org/TR/2013/WD-html-picture-element-20130226/) using `span`s, for safety sake.
 
@@ -88,6 +54,39 @@ For the "large" image for browser min-width 800px, for example, the resulting co
 Here the class "specificSpan-lrg" is applied directly to the img element, and so is the class "parentSpanClass". 
 
 This incorporates DRY fundamentals so you Don't Repeat Yourself.
+
+# GitHub JSON-P Query
+A skills test with the following requirements:
+
+**Overview**
+
+Write a single page JavaScript application that allows one to search Github.com for repos by keyword.
+There is no one way to complete this exercise as long as the minimum requirements are met.
+
+**Requirements**
+
+1. You can only edit app.js, you cannot touch index.html. jQuery is provided.
+2. index.html contains two elements: one for the search term and one for the results.
+3. The results should show as a list with each item in an "owner/name" format.
+4. When a result is clicked, display an alert with the repo's `language`, `followers`, `url` and `description`.
+5. The search term should be cached so duplicate searches do not trigger further requests. 
+6. Solution does not need to support older browsers.
+
+**Solution:**
+* Call a search after 300ms from keyup in the search box. That's the optimum time for such a delay and gives the best UX. It strikes a balance between the user feeling searches are "instant" and from not flooding the server with requests.
+* Throughout the process, utilized the console to check the search term, returned array length, and cached status
+* Cached searches using Local Storage
+* Simple unordered list to display results given the requirements
+* Linked the alert boxes to the list item's index position, to make other values relative
+* Encountered one alert box while testing that overflowed my screen with a very long description. So I made a check to see if description length > 300, if so, then extract just the first 300 characters
+
+# Google Maps
+
+"Google Maps" - PHP, MySQL, JavaScript, Google Maps API v3. A project to integrate an interactive, dynamic map on a PHP/MySQL website for a farmers' market association with over 65 unique markets. Through PHP a MySQL database is queried, and echo array created in JavaScript that populates interactive markers and corresponding information including Market Name, Location, Hours, Season, Directions, and Social Media Link. 
+
+For raw code, see the files on GitHub at https://github.com/jpostdesign/code_samples/tree/master/google_maps
+
+A working, interactive example of the resulting map, is on my website. I simulated a date of March 28th to show open vs closed markets, and links have been replaced with dummy placeholders for example purposes. See it at: http://jpost-design.com/#interactive-map
 
 
 # simulatedChat
